@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seif Eldin Omar | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="nav-left">
+                <button class="nav-btn" onclick="showAllCategories()">ALL CATEGORIES</button>
+            </div>
+            <div class="logo-container">
+                <img src="seif logo copy.png" alt="Seif Logo" class="center-logo">
+            </div>
+            <div class="nav-right">
+                <a href="#contact" class="nav-btn">GET IN TOUCH</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="badge">Visual Designer & Ad Specialist</span>
+            <h1 class="hero-title">SEIF ELDIN</h1>
+            <p class="hero-bio">Graphic Design student at Helwan University. Specializing in visual storytelling, 
+                from high-impact social media campaigns to intuitive UI/UX experiences.
+
+            <div class="folder-filters" id="main-filters">
+                <button class="filter-btn active" id="btn-all" onclick="showAllCategories()">All Categories</button>
+                <button class="filter-btn" id="btn-social" onclick="openCategory('social-main')">Social Media</button>
+                <button class="filter-btn" id="btn-ui" onclick="openCategory('ui-main')">UI Designs</button>
+                <button class="filter-btn" id="btn-printed" onclick="openCategory('printed-main')">Printed Designs</button>
+            </div>
+
+            <div class="sub-filters" id="social-subs" style="display: none;">
+                <button class="sub-btn" onclick="filterSelection('football')">Alahly Empire</button>
+                <button class="sub-btn" onclick="filterSelection('touha')">Touha Tourism</button>
+                <button class="sub-btn" onclick="filterSelection('uni')">Uni Projects</button>
+            </div>
+            <div class="sub-filters" id="ui-subs" style="display: none;">
+                <button class="sub-btn" onclick="filterSelection('sine-app')">Sine App</button>
+            </div>
+            <div class="sub-filters" id="printed-subs" style="display: none;">
+                <button class="sub-btn" onclick="filterSelection('yum')">Yum Yum Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="container">
+        <div class="grid" id="portfolio-grid">
+            
+            <div class="card category-cover" onclick="openCategory('social-main')">
+                <img src="Alahly V gormahia.png"> <div class="cover-overlay"><h3>Social Media Designs</h3></div>
+            </div>
+            
+            <div class="card category-cover" onclick="openCategory('ui-main')">
+                <img src="Home screen.jpg"> <div class="cover-overlay"><h3>UI Designs</h3></div>
+            </div>
+
+            <div class="card category-cover" onclick="openCategory('printed-main')">
+                <img src="yum yum menu New 2 copy.jpg"> <div class="cover-overlay"><h3>Printed Designs</h3></div>
+            </div>
+
+            <div class="card item-card ui sine-app"><img src="Home screen.jpg"><h3>Sine App - Home</h3></div>
+            <div class="card item-card ui sine-app"><img src="Hoodies category.jpg"><h3>Sine App - Category</h3></div>
+            <div class="card item-card ui sine-app"><img src="Filters.jpg"><h3>Sine App - Filters</h3></div> 
+            <div class="card item-card ui sine-app"><img src="product details.jpg"><h3>Sine App - Product Details</h3></div>
+            <div class="card item-card ui sine-app"><img src="favourites.jpg"><h3>Sine App - Favourites</h3></div>
+            <div class="card item-card ui sine-app"><img src="cart.jpg"><h3>Sine App - Cart</h3></div>
+            <div class="card item-card ui sine-app"><img src="Checkout.jpg"><h3>Sine App - Checkout</h3></div>
+            <div class="card item-card ui sine-app"><img src="Orders.jpg"><h3>Sine App - Orders</h3></div>
+            <div class="card item-card ui sine-app"><img src="Addresses.jpg"><h3>Sine App - Addresses</h3></div>
+            <div class="card item-card ui sine-app"><img src="Payment.jpg"><h3>Sine App - Payment</h3></div>
+            <div class="card item-card ui sine-app"><img src="setting.jpg"><h3>Sine App - Setting</h3></div>
+
+            <div class="card item-card football social"><img src="Alahly V gormahia.png"><h3>Ahly vs Gormahia</h3></div>
+            <div class="card item-card football social"><img src="Alahly Vs elesmaily.jpg"><h3>Ahly vs Ismaily</h3></div>
+            <div class="card item-card football social"><img src="Alahly Vs Elzamalek.png"><h3>Ahly vs Zamalek</h3></div>
+            <div class="card item-card football social"><img src="Alahly vs Patchuca.png"><h3>Ahly vs Patchuca</h3></div>
+            <div class="card item-card football social"><img src="Real Madrid vs Sevilla copy.png"><h3>Real Madrid vs Sevilla</h3></div>
+            <div class="card item-card touha social"><img src="اسوان 1.png"><h3>Aswan Digital Art</h3></div>
+            <div class="card item-card touha social"><img src="الاقصر 2.png"><h3>Luxor Visuals</h3></div>
+            <div class="card item-card touha social"><img src="Touha.png"><h3>Touha Poster</h3></div>
+            <div class="card item-card uni social"><img src="Isis Green tea copy.jpg"><h3>Isis Branding</h3></div>
+            <div class="card item-card uni social"><img src="Redbull copy.jpg"><h3>Redbull Creative</h3></div>
+            <div class="card item-card uni social"><img src="Six hats white (Bab elsham) copy.jpg"><h3>Bab Elsham Identity</h3></div>
+            <div class="card item-card uni social"><img src="collage 1 copy.jpg"><h3>Collage Work</h3></div>
+            <div class="card item-card uni social"><img src="Frida copy.jpg"><h3>Frida Concept</h3></div>
+            <div class="card item-card uni social"><img src="Twist final 1.jpg"><h3>Twist Visuals</h3></div>
+
+            <div class="card item-card printed yum"><img src="yum yum menu New 2 copy.jpg"><h3>Yum Yum Menu</h3></div>
+            <div class="card item-card printed yum"><img src="Vedio frame 1.jpg"><h3>Visual Layout</h3></div>
+        </div>
+    </section>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <footer id="contact">
+        <div class="container">
+            <h2 class="footer-title">Ready to collaborate?</h2>
+            <a href="mailto:seifrico76@gmail.com" class="email-link">seifrico76@gmail.com</a>
+            <div class="contact-grid">
+                <a href="https://wa.me/201002324228" target="_blank" class="contact-item btn-styled">WhatsApp</a>
+                <a href="https://www.instagram.com/seifomar__" target="_blank" class="contact-item btn-styled">Instagram</a>
+                <a href="tel:01002324228" class="contact-item btn-styled">Call: 01002324228</a>
+            </div>
+            <p class="copyright">© 2026 Seif Eldin Omar</p>
+        </div>
+    </footer>
+
+    <script>
+        function openCategory(type) {
+            // Hide all sub-filters and item-cards
+            document.querySelectorAll('.sub-filters').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.item-card').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.category-cover').forEach(el => el.style.display = 'none');
+
+            // Set active button
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            
+            if (type === 'social-main') {
+                document.getElementById('social-subs').style.display = 'flex';
+                document.getElementById('btn-social').classList.add('active');
+                filterSelection('social');
+            } else if (type === 'ui-main') {
+                document.getElementById('ui-subs').style.display = 'flex';
+                document.getElementById('btn-ui').classList.add('active');
+                filterSelection('ui');
+            } else if (type === 'printed-main') {
+                document.getElementById('printed-subs').style.display = 'flex';
+                document.getElementById('btn-printed').classList.add('active');
+                filterSelection('printed');
+            }
+        }
+
+        function showAllCategories() {
+            document.querySelectorAll('.sub-filters').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.item-card').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.category-cover').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-all').classList.add('active');
+        }
+
+        function filterSelection(c) {
+            var x = document.getElementsByClassName("item-card");
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
+            }
+        }
+
+        // Initialize show covers
+        window.onload = showAllCategories;
+
+        // Modal Logic
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        document.querySelectorAll('.item-card img').forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                document.getElementById("caption").innerHTML = this.parentElement.querySelector('h3').innerHTML;
+            }
+        });
+        document.querySelector(".close").onclick = function() { modal.style.display = "none"; }
+    </script>
+</body>
+</html>
