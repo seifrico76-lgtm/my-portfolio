@@ -226,7 +226,7 @@ nav {
     font-size: 24px;
     color: var(--white);
     font-weight: 900;
-    text-align: left;
+    text-align: Left;
 }
 
 .item-card {
