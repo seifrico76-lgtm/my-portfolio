@@ -44,6 +44,7 @@ body {
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    text-align: center;
 }
 
 .filter-btn.active, .filter-btn:hover, .nav-btn:hover, .btn-styled:hover {
@@ -54,11 +55,12 @@ body {
 
 /* --- Header & Navigation --- */
 header {
-    padding: 30px 0;
+    padding: 20px 0;
     position: sticky;
     top: 0;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     z-index: 1000;
     border-bottom: 1px solid #111;
 }
@@ -81,6 +83,7 @@ nav {
     filter: invert(1);
     transition: 0.5s ease;
     cursor: pointer;
+    display: block;
 }
 
 /* --- Hero Section --- */
@@ -226,7 +229,7 @@ nav {
     font-size: 24px;
     color: var(--white);
     font-weight: 900;
-    text-align: Left;
+    text-align: left;
 }
 
 .item-card {
@@ -248,6 +251,8 @@ nav {
     margin: auto;
     display: block;
     max-height: 85vh;
+    max-width: 90vw;
+    object-fit: contain;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -256,17 +261,21 @@ nav {
 .close {
     position: absolute;
     top: 20px;
-    right: 35px;
+    right: 25px;
     color: #fff;
     font-size: 40px;
     cursor: pointer;
+    z-index: 2001;
 }
 
 #caption {
     text-align: center;
     color: var(--accent);
-    padding: 10px;
+    padding: 15px;
     text-transform: uppercase;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
 }
 
 /* --- Footer --- */
@@ -289,6 +298,7 @@ footer {
     color: var(--white);
     text-decoration: none;
     font-weight: 900;
+    word-break: break-word;
 }
 
 .email-link:hover { color: var(--accent); }
@@ -303,10 +313,131 @@ footer {
 
 .copyright { margin-top: 60px; color: #333; font-size: 10px; }
 
-/* --- Responsive --- */
-@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { 
-    .grid { grid-template-columns: 1fr; }
-    .logo-container { position: static; transform: none; margin-bottom: 10px; }
-    nav { flex-direction: column; }
+
+/* --- Responsive Media Queries --- */
+
+/* شاشات اللابتوب الصغيرة والتابلت */
+@media (max-width: 1024px) { 
+    .grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        padding: 40px 0;
+    }
+    .category-cover {
+        height: 300px;
+    }
+}
+
+/* شاشات الموبايل الكبيرة والصغيرة */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    header {
+        padding: 15px 0;
+    }
+
+    nav { 
+        flex-direction: row; /* الحفاظ على التصميم الأفقي للـ Navbar */
+        justify-content: space-between;
+    }
+
+    .logo-container { 
+        position: static; 
+        transform: none; 
+        order: 2; /* وضع اللوجو في المنتصف بين الزرين */
+    }
+
+    .nav-left { order: 1; }
+    .nav-right { order: 3; }
+
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 9px;
+    }
+
+    .center-logo {
+        height: 40px; /* تصغير حجم اللوجو ليناسب المساحة المضغوطة */
+    }
+
+    .hero {
+        padding: 50px 0 30px;
+    }
+
+    .hero-title {
+        letter-spacing: -2px;
+        margin-bottom: 15px;
+    }
+
+    .hero-bio {
+        font-size: 0.95rem;
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+
+    .folder-filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 10px 16px;
+        font-size: 10px;
+        flex: 1 1 calc(50% - 8px); /* جعل الأزرار تأخذ نصف العرض بالتساوي في الموبايل */
+        text-align: center;
+    }
+
+    .sub-filters {
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .sub-btn {
+        padding: 8px 16px;
+        font-size: 10px;
+    }
+
+    .grid { 
+        grid-template-columns: 1fr; /* جعل الكروت تحت بعضها بشكل رأسي مريح */
+        gap: 15px;
+        padding: 30px 0 60px;
+    }
+
+    .category-cover {
+        height: 220px;
+    }
+
+    .cover-overlay h3 {
+        font-size: 18px;
+    }
+
+    .card h3 {
+        font-size: 10px;
+        padding: 12px;
+    }
+
+    .modal-content {
+        max-width: 95vw;
+    }
+
+    .close {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+    }
+
+    footer {
+        padding: 60px 0;
+    }
+
+    .contact-grid {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .btn-styled {
+        width: 100%; /* جعل أزرار التواصل تأخذ العرض الكامل لسهولة الضغط عليها بالصابع */
+        padding: 14px;
+    }
 }
