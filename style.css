@@ -162,12 +162,14 @@ nav {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Grid System - 4 columns --- */
+/* --- Grid System --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    /* إجبار الجريد على عرض 4 كروت بالظبط بالتساوي في الصف الواحد للشاشات الكبيرة */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px;
     padding: 60px 0 100px;
+    width: 100%;
 }
 
 .card {
@@ -176,12 +178,15 @@ nav {
     overflow: hidden;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 6px;
+    width: 100%; /* الكارد يتطابق مع مساحة العمود المرن المخصص له */
 }
 
+/* ضبط مقاس الصور ليكون بارتفاع 300px وتملأ عرض الكارد لتظهر مربعة ومظبوطة */
 .card img {
     width: 100%;
-    aspect-ratio: 1/1.2;
-    object-fit: cover;
+    height: 300px;        /* تثبيت الارتفاع عند 300px لضمان الشكل المربع المتناسق */
+    object-fit: cover;    /* قص حواف الصورة تلقائيًا لمنع التمطيط أو التشويه */
     display: block;
     filter: grayscale(1);
     transition: 0.6s;
@@ -200,33 +205,38 @@ nav {
     text-transform: uppercase;
 }
 
-/* PDF/Logo Specific Formatting */
+/* مواءمة كروت الـ PDF واللوجو لتصبح متناسقة تماماً ومربعة */
 .item-card.circa img, .item-card.logo img {
-    object-fit: contain;
-    background: #000;
-    padding: 20px;
+    object-fit: contain;  
+    background: #080808;
+    padding: 25px;
+    height: 300px;        /* توحيد الارتفاع المربع مع باقي الصور */
+    width: 100%;
 }
 
 /* --- Category Covers --- */
 .category-cover {
     position: relative;
-    height: 400px;
+    height: 300px;        /* جعل غلاف الفولدر بنفس الارتفاع المربع المتناسق */
+    width: 100%;
 }
 
 .category-cover img {
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     filter: brightness(0.4) grayscale(1);
 }
 
 .cover-overlay {
     position: absolute;
-    bottom: 30px;
+    bottom: 25px;
     left: 20px;
     pointer-events: none;
 }
 
 .cover-overlay h3 {
-    font-size: 24px;
+    font-size: 20px;
     color: var(--white);
     font-weight: 900;
     text-align: left;
@@ -250,9 +260,9 @@ nav {
 .modal-content {
     margin: auto;
     display: block;
-    max-height: 85vh;
-    max-width: 90vw;
-    object-fit: contain;
+    max-height: 80vh;    
+    max-width: 85vw;     
+    object-fit: contain; 
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -319,15 +329,14 @@ footer {
 /* شاشات اللابتوب الصغيرة والتابلت */
 @media (max-width: 1024px) { 
     .grid { 
+        /* على الشاشات المتوسطة والتابلت يتحول الجريد تلقائيًا إلى كارتين في الصف عشان المقاسات تفضل واضحة */
         grid-template-columns: repeat(2, 1fr); 
+        gap: 20px;
         padding: 40px 0;
-    }
-    .category-cover {
-        height: 300px;
     }
 }
 
-/* شاشات الموبايل الكبيرة والصغيرة */
+/* شاشات الموبايل */
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;
@@ -338,14 +347,14 @@ footer {
     }
 
     nav { 
-        flex-direction: row; /* الحفاظ على التصميم الأفقي للـ Navbar */
+        flex-direction: row; 
         justify-content: space-between;
     }
 
     .logo-container { 
         position: static; 
         transform: none; 
-        order: 2; /* وضع اللوجو في المنتصف بين الزرين */
+        order: 2; 
     }
 
     .nav-left { order: 1; }
@@ -357,7 +366,7 @@ footer {
     }
 
     .center-logo {
-        height: 40px; /* تصغير حجم اللوجو ليناسب المساحة المضغوطة */
+        height: 40px; 
     }
 
     .hero {
@@ -382,7 +391,7 @@ footer {
     .filter-btn {
         padding: 10px 16px;
         font-size: 10px;
-        flex: 1 1 calc(50% - 8px); /* جعل الأزرار تأخذ نصف العرض بالتساوي في الموبايل */
+        flex: 1 1 calc(50% - 8px); 
         text-align: center;
     }
 
@@ -397,13 +406,18 @@ footer {
     }
 
     .grid { 
-        grid-template-columns: 1fr; /* جعل الكروت تحت بعضها بشكل رأسي مريح */
+        /* على شاشات الموبايل يظهر كارد واحد مالي الشاشة رأسيًا بشكل منظم */
+        grid-template-columns: 1fr; 
         gap: 15px;
         padding: 30px 0 60px;
     }
 
+    .card img, .item-card.circa img, .item-card.logo img {
+        height: 300px; /* الحفاظ الكامل على الارتفاع المربع حتى على الموبايل */
+    }
+
     .category-cover {
-        height: 220px;
+        height: 300px;
     }
 
     .cover-overlay h3 {
@@ -417,6 +431,7 @@ footer {
 
     .modal-content {
         max-width: 95vw;
+        max-height: 75vh;
     }
 
     .close {
@@ -437,7 +452,7 @@ footer {
     }
 
     .btn-styled {
-        width: 100%; /* جعل أزرار التواصل تأخذ العرض الكامل لسهولة الضغط عليها بالصابع */
+        width: 100%; 
         padding: 14px;
     }
 }
