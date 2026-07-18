@@ -32,59 +32,6 @@ body {
     padding: 0 30px;
 }
 
-/* --- Premium Custom Inertia Cursor Styles --- */
-@media (min-width: 901px) {
-    body, a, button, .card, .category-cover, .center-logo {
-        cursor: none !important;
-    }
-}
-
-.custom-cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--white);
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 10000;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.3s;
-}
-
-.custom-cursor-ring {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
-}
-
-.custom-cursor-ring.hovered {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--white);
-}
-
-body.movie-theme .custom-cursor-dot { background-color: var(--movie-accent); }
-body.movie-theme .custom-cursor-ring { border-color: rgba(255, 42, 42, 0.4); }
-body.movie-theme .custom-cursor-ring.hovered { background-color: rgba(255, 42, 42, 0.15); border-color: var(--movie-accent); }
-
-/* إخفاء الكيرسور المخصص تماماً على الموبايل والتاب وأي جهاز يعتمد على اللمس */
-@media (max-width: 900px), (pointer: coarse) {
-    .custom-cursor-dot,
-    .custom-cursor-ring {
-        display: none !important;
-    }
-}
-
-
 /* --- شاشة الافتتاح الذكية بالـ Trim Path & Scale Down --- */
 #splash-screen {
     position: fixed;
