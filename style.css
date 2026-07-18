@@ -1,14 +1,17 @@
-/* --- Root Variables --- */
+/* --- Root Variables & Theme Tokens --- */
 :root {
-    --bg: #000;
+    --bg: #050505;
     --accent: #00ff88;
-    --text-dim: #777;
-    --border: #222;
-    --card-bg: #080808;
+    --accent-rgb: 0, 255, 136;
+    --text-dim: #999999;
+    --border: #141414;
+    --card-bg: rgba(15, 15, 15, 0.6);
     --white: #ffffff;
+    --movie-accent: #ff2a2a; 
+    --movie-accent-rgb: 255, 42, 42;
 }
 
-/* --- Global Reset --- */
+/* --- Global Reset & Optimization --- */
 * {
     margin: 0;
     padding: 0;
@@ -26,43 +29,126 @@ body {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 25px;
+    padding: 0 30px;
 }
 
-/* --- Global Buttons & Links --- */
-.filter-btn, .nav-btn, .btn-styled {
-    background: #111;
-    color: #666;
-    border: 1px solid var(--border);
-    padding: 12px 24px;
-    cursor: pointer;
-    font-weight: 700;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
+/* --- Premium Custom Inertia Cursor Styles --- */
+@media (min-width: 901px) {
+    body, a, button, .card, .category-cover, .center-logo {
+        cursor: none !important;
+    }
 }
 
-.filter-btn.active, .filter-btn:hover, .nav-btn:hover, .btn-styled:hover {
-    background: var(--white) !important;
-    color: #000 !important;
-    border-color: var(--white) !important;
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--white);
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.3s;
 }
 
-/* --- Header & Navigation --- */
+.custom-cursor-ring {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+.custom-cursor-ring.hovered {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
+}
+
+body.movie-theme .custom-cursor-dot { background-color: var(--movie-accent); }
+body.movie-theme .custom-cursor-ring { border-color: rgba(255, 42, 42, 0.4); }
+body.movie-theme .custom-cursor-ring.hovered { background-color: rgba(255, 42, 42, 0.15); border-color: var(--movie-accent); }
+
+
+/* --- شاشة الافتتاح الذكية بالـ Trim Path & Scale Down --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #030303;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.splash-logo-container {
+    position: absolute;
+    width: 200px; 
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), top 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.splash-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-path {
+    stroke: #ffffff;
+    stroke-width: 4px;
+    stroke-dasharray: 2500;
+    stroke-dashoffset: 2500;
+    animation: drawAndFill 2.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes drawAndFill {
+    0% {
+        stroke-dashoffset: 2500;
+        fill: rgba(255, 255, 255, 0);
+    }
+    60% {
+        stroke-dashoffset: 0;
+        fill: rgba(255, 255, 255, 0);
+    }
+    100% {
+        stroke-dashoffset: 0;
+        stroke: transparent;
+        fill: inherit;
+    }
+}
+
+#splash-screen.shrink { background-color: transparent; }
+#splash-screen.shrink .splash-logo-container {
+    top: 20px; 
+    left: 50%;
+    transform: translate(-50%, 0) scale(0.275);
+}
+
+
+/* --- Navigation Layout --- */
 header {
     padding: 20px 0;
     position: sticky;
     top: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     z-index: 1000;
-    border-bottom: 1px solid #111;
+    border-bottom: 1px solid var(--border);
 }
 
 nav {
@@ -76,383 +162,400 @@ nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
 }
 
 .center-logo {
-    height: 60px;
-    filter: invert(1);
-    transition: 0.5s ease;
-    cursor: pointer;
-    display: block;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
 }
 
-/* --- Hero Section --- */
+.fade-in-logo {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fade-in-logo.show { opacity: 1; }
+
+
+/* --- Buttons Style --- */
+.nav-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 10px 22px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn:hover {
+    color: var(--white);
+    border-color: var(--white);
+    background: rgba(255,255,255,0.05);
+}
+
+
+/* --- Hero Section & Custom Glows --- */
 .hero {
-    padding: 80px 0 40px;
+    padding: 140px 0 60px;
     text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.5s ease;
+}
+
+body.movie-theme .hero::before {
+    background: radial-gradient(circle, rgba(var(--movie-accent-rgb), 0.08) 0%, rgba(0,0,0,0) 70%);
 }
 
 .badge {
+    position: relative;
+    z-index: 1;
     display: inline-block;
-    padding: 5px 15px;
-    border: 1px solid var(--accent);
+    padding: 6px 18px;
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    background: rgba(var(--accent-rgb), 0.03);
     color: var(--accent);
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    letter-spacing: 2px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    transition: all 0.5s ease;
+}
+
+body.movie-theme .badge {
+    color: var(--movie-accent);
+    border-color: rgba(var(--movie-accent-rgb), 0.3);
+    background: rgba(var(--movie-accent-rgb), 0.03);
 }
 
 .hero-title {
-    font-size: clamp(3rem, 10vw, 8rem);
+    position: relative;
+    z-index: 1;
+    font-size: clamp(4rem, 12vw, 9rem);
     font-weight: 900;
-    letter-spacing: -5px;
-    margin-bottom: 10px;
-    line-height: 1;
+    letter-spacing: -4px;
+    margin-bottom: 20px;
+    line-height: 0.9;
+    background: linear-gradient(180deg, #ffffff 30%, #555555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-bio {
+    position: relative;
+    z-index: 1;
     max-width: 700px;
-    margin: 0 auto 40px;
-    font-size: 1.1rem;
+    margin: 0 auto 55px;
+    font-size: 1.2rem;
     color: var(--text-dim);
-    line-height: 1.8;
 }
 
-/* --- Filters Layout --- */
+
+/* --- Filter Folders UI --- */
 .folder-filters {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    background: #0f0f0f;
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    gap: 6px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* Sub-Filters (Green Capsules) */
+.filter-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    padding: 12px 24px;
+    font-weight: 700;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.filter-btn:hover { color: var(--white); background: rgba(255, 255, 255, 0.03); }
+.filter-btn.active { background: var(--white); color: #000000; }
+
+body.movie-theme .filter-btn.active {
+    background: var(--movie-accent);
+    color: var(--white);
+    box-shadow: 0 0 20px rgba(var(--movie-accent-rgb), 0.4);
+}
+
 .sub-filters {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-top: 35px;
     flex-wrap: wrap;
-    animation: fadeIn 0.5s ease;
+    animation: filterReveal 0.4s ease forwards;
 }
 
 .sub-btn {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 10px 25px;
-    cursor: pointer;
-    border-radius: 30px;
+    background: #0f0f0f;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 10px 22px;
+    border-radius: 20px;
     font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: 0.3s;
+    font-weight: 600;
+    display: inline-block;
 }
 
 .sub-btn:hover {
-    background: var(--accent);
-    color: #000;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
 }
 
-@keyframes fadeIn {
+#film-subs .sub-btn:hover {
+    border-color: var(--movie-accent);
+    box-shadow: 0 0 15px rgba(var(--movie-accent-rgb), 0.3);
+}
+
+@keyframes filterReveal {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+
 /* --- Grid System --- */
 .grid {
     display: grid;
-    /* إجبار الجريد على عرض 4 كروت بالظبط بالتساوي في الصف الواحد للشاشات الكبيرة */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 25px;
-    padding: 60px 0 100px;
-    width: 100%;
+    gap: 30px;
+    padding: 40px 0 120px;
+    align-items: stretch; /* إجبار كل كروت الصف الواحد على التمدد لنفس الطول */
 }
 
+
+/* --- Premium Card Design & Perfect Staggered Reveal --- */
 .card {
     background: var(--card-bg);
-    border: 1px solid #111;
+    border: 1px solid var(--border);
     overflow: hidden;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 6px;
-    width: 100%; /* الكارد يتطابق مع مساحة العمود المرن المخصص له */
+    border-radius: 12px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+    
+    /* الفليكس بوكس السحري لترتيب وفصل الصور عن العناوين تماماً */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
 }
 
-/* ضبط مقاس الصور ليكون بارتفاع 300px وتملأ عرض الكارد لتظهر مربعة ومظبوطة */
+/* حركة التتابع السلسة للكروت */
+.item-card[style*="display: block"], .category-cover[style*="display: block"] {
+    animation: premiumReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--card-index, 0) * 0.05s); 
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+}
+
+@keyframes premiumReveal {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* التنسيق الافتراضي للصور داخل الكروت */
 .card img {
     width: 100%;
-    height: 300px;        /* تثبيت الارتفاع عند 300px لضمان الشكل المربع المتناسق */
-    object-fit: cover;    /* قص حواف الصورة تلقائيًا لمنع التمطيط أو التشويه */
+    height: 280px; /* توحيد الارتفاع الافتراضي للبوكس الحاضن للصور */
+    object-fit: cover; /* التغطية الكاملة للصور الطولية دون أي تشويه أو تمطيط */
+    object-position: center;
     display: block;
-    filter: grayscale(1);
-    transition: 0.6s;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    transform: translateY(-6px);
+}
+
+body.movie-theme .card:hover {
+    border-color: rgba(var(--movie-accent-rgb), 0.4);
+    box-shadow: 0 20px 40px rgba(var(--movie-accent-rgb), 0.1);
 }
 
 .card:hover img {
-    filter: grayscale(0);
+    filter: grayscale(0) brightness(1.05);
     transform: scale(1.03);
 }
 
+/* محاذاة وتثبيت العناوين في قاع الكروت على خط مسطرة واحد */
 .card h3 {
-    padding: 15px;
-    font-size: 11px;
-    color: var(--text-dim);
+    margin-top: auto; /* سوستة فليكس تدفع العنوان لأسفل الكارت تماماً */
+    padding: 20px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--white);
     text-align: center;
     text-transform: uppercase;
+    background: #090909;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    min-height: 65px; /* ضمان المحاذاة حتى لو العنوان سطر أو سطرين */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-/* مواءمة كروت الـ PDF واللوجو لتصبح متناسقة تماماً ومربعة */
-.item-card.circa img, .item-card.logo img {
-    object-fit: contain;  
-    background: #080808;
+.card:hover h3 { background: var(--white); color: #000000; }
+body.movie-theme .card:hover h3 { background: var(--movie-accent); color: var(--white); }
+
+/* ألبومات ملفات الكيس ستاديز واللوجوهات (سيركا، ماتريال، أوريمو) لضمان دقتها الكاملة */
+.item-card.circa img, 
+.item-card.material-crafts img, 
+.item-card.logo img {
+    object-fit: contain !important; /* منع قص أي تفاصيل مهمة من الأغلفة العريضة */
+    background: #090909; /* لون خلفية يملأ الفراغات الجانبية بأناقة */
     padding: 25px;
-    height: 300px;        /* توحيد الارتفاع المربع مع باقي الصور */
-    width: 100%;
+    height: 280px; /* مطابقة الارتفاع الموحد تماماً لبقية الكروت */
 }
 
-/* --- Category Covers --- */
-.category-cover {
-    position: relative;
-    height: 300px;        /* جعل غلاف الفولدر بنفس الارتفاع المربع المتناسق */
-    width: 100%;
-}
 
-.category-cover img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    filter: brightness(0.4) grayscale(1);
-}
+/* --- Category Covers Overlay --- */
+.category-cover { position: relative; height: 340px; }
+.category-cover img { height: 100%; filter: brightness(0.4) grayscale(0.5); object-fit: cover; }
+.card.category-cover:hover img { filter: brightness(0.6) grayscale(0); }
 
 .cover-overlay {
     position: absolute;
-    bottom: 25px;
-    left: 20px;
-    pointer-events: none;
+    bottom: 0; left: 0; width: 100%;
+    padding: 35px 25px;
+    background: linear-gradient(to top, #090909 20%, rgba(0,0,0,0) 100%);
 }
 
 .cover-overlay h3 {
-    font-size: 20px;
-    color: var(--white);
-    font-weight: 900;
-    text-align: left;
+    font-size: 18px; color: var(--white); font-weight: 700; text-align: left;
+    padding: 0; background: transparent !important; border: none !important;
+    min-height: auto; display: block;
 }
+.card.category-cover:hover .cover-overlay h3 { color: var(--accent); }
 
-.item-card {
-    display: none;
-}
+.item-card { display: none; }
 
-/* --- Modal --- */
+
+/* --- Lightbox Modal Area --- */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(10px);
+    display: none; position: fixed; z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(3, 3, 3, 0.98); backdrop-filter: blur(20px);
 }
 
 .modal-content {
-    margin: auto;
-    display: block;
-    max-height: 80vh;    
-    max-width: 85vw;     
-    object-fit: contain; 
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    margin: auto; display: block;
+    max-height: 85vh; max-width: 85vw; object-fit: contain;
+    position: relative; top: 50%; transform: translateY(-50%);
+    animation: zoomInModal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoomInModal {
+    from { opacity: 0; transform: translateY(-50%) scale(0.95); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); }
 }
 
 .close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    color: #fff;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 2001;
+    position: absolute; top: 30px; right: 30px;
+    color: var(--text-dim); font-size: 38px; cursor: pointer;
 }
+.close:hover { color: var(--white); }
 
 #caption {
-    text-align: center;
-    color: var(--accent);
-    padding: 15px;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
+    text-align: center; color: var(--white); font-weight: 700;
+    letter-spacing: 1px; padding: 15px; text-transform: uppercase;
+    position: absolute; bottom: 30px; width: 100%;
 }
 
-/* --- Footer --- */
+
+/* --- Footer & Branding Area --- */
 footer {
-    padding: 100px 0;
-    text-align: center;
-    border-top: 1px solid #111;
+    padding: 140px 0 80px; text-align: center;
+    border-top: 1px solid var(--border); background: #080808;
 }
 
 .footer-title {
-    font-size: 1.2rem;
-    color: var(--text-dim);
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 11px; color: var(--text-dim); margin-bottom: 25px;
+    text-transform: uppercase; letter-spacing: 3px; font-weight: 600;
 }
 
 .email-link {
-    font-size: clamp(2rem, 5vw, 4rem);
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 900;
-    word-break: break-word;
+    font-size: clamp(2.2rem, 6vw, 4.5rem); color: var(--white);
+    text-decoration: none; font-weight: 900; letter-spacing: -2px;
+    transition: all 0.3s ease;
 }
 
-.email-link:hover { color: var(--accent); }
-
-.contact-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 40px;
-    flex-wrap: wrap;
+.email-link:hover { 
+    color: var(--accent); text-shadow: 0 0 30px rgba(var(--accent-rgb), 0.3);
 }
 
-.copyright { margin-top: 60px; color: #333; font-size: 10px; }
-
-
-/* --- Responsive Media Queries --- */
-
-/* شاشات اللابتوب الصغيرة والتابلت */
-@media (max-width: 1024px) { 
-    .grid { 
-        /* على الشاشات المتوسطة والتابلت يتحول الجريد تلقائيًا إلى كارتين في الصف عشان المقاسات تفضل واضحة */
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 20px;
-        padding: 40px 0;
-    }
+body.movie-theme .email-link:hover {
+    color: var(--movie-accent); text-shadow: 0 0 30px rgba(var(--movie-accent-rgb), 0.3);
 }
 
-/* شاشات الموبايل */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    header {
-        padding: 15px 0;
-    }
+.contact-grid { display: flex; justify-content: center; gap: 15px; margin-top: 50px; flex-wrap: wrap; }
 
-    nav { 
-        flex-direction: row; 
-        justify-content: space-between;
-    }
+.btn-styled {
+    background: #0f0f0f; color: var(--white); border: 1px solid var(--border);
+    padding: 14px 32px; text-decoration: none; font-size: 11px;
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 8px;
+}
 
-    .logo-container { 
-        position: static; 
-        transform: none; 
-        order: 2; 
-    }
+.btn-styled:hover { background: var(--white); color: #000000; }
 
-    .nav-left { order: 1; }
-    .nav-right { order: 3; }
+.copyright { margin-top: 90px; color: #222222; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
 
-    .nav-btn {
-        padding: 8px 12px;
-        font-size: 9px;
-    }
 
-    .center-logo {
-        height: 40px; 
-    }
+/* --- Full Mobile Responsiveness Setup --- */
+@media (max-width: 1200px) {
+    .grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
 
-    .hero {
-        padding: 50px 0 30px;
-    }
+@media (max-width: 900px) { 
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
 
-    .hero-title {
-        letter-spacing: -2px;
-        margin-bottom: 15px;
-    }
-
-    .hero-bio {
-        font-size: 0.95rem;
-        padding: 0 10px;
-        margin-bottom: 30px;
-    }
-
-    .folder-filters {
-        gap: 8px;
-    }
-
-    .filter-btn {
-        padding: 10px 16px;
-        font-size: 10px;
-        flex: 1 1 calc(50% - 8px); 
-        text-align: center;
-    }
-
-    .sub-filters {
-        gap: 8px;
-        margin-top: 20px;
-    }
-
-    .sub-btn {
-        padding: 8px 16px;
-        font-size: 10px;
-    }
-
-    .grid { 
-        /* على شاشات الموبايل يظهر كارد واحد مالي الشاشة رأسيًا بشكل منظم */
-        grid-template-columns: 1fr; 
-        gap: 15px;
-        padding: 30px 0 60px;
-    }
-
-    .card img, .item-card.circa img, .item-card.logo img {
-        height: 300px; /* الحفاظ الكامل على الارتفاع المربع حتى على الموبايل */
-    }
-
-    .category-cover {
-        height: 300px;
-    }
-
-    .cover-overlay h3 {
-        font-size: 18px;
-    }
-
-    .card h3 {
-        font-size: 10px;
-        padding: 12px;
-    }
-
-    .modal-content {
-        max-width: 95vw;
-        max-height: 75vh;
-    }
-
-    .close {
-        top: 15px;
-        right: 20px;
-        font-size: 35px;
-    }
-
-    footer {
-        padding: 60px 0;
-    }
-
-    .contact-grid {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        padding: 0 20px;
-    }
-
-    .btn-styled {
-        width: 100%; 
-        padding: 14px;
-    }
+@media (max-width: 600px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 90px 0 40px; }
+    .hero-title { letter-spacing: -2px; }
+    .folder-filters { width: 100%; flex-direction: column; }
+    .filter-btn { width: 100%; }
+    .grid { grid-template-columns: 1fr; gap: 25px; }
+    .card img, .category-cover { height: 280px; }
+    .item-card.circa img, .item-card.material-crafts img, .item-card.logo img { height: 280px; padding: 15px; }
+    .contact-grid { flex-direction: column; }
+    .btn-styled { width: 100%; }
 }
