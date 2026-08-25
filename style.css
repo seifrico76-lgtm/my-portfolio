@@ -229,28 +229,33 @@ nav {
 .typing-text {
     overflow: hidden; 
     white-space: nowrap; 
-    border-right: 4px solid var(--accent);
-    margin: 0 0 20px 0;
-    font-size: clamp(3rem, 10vw, 7rem); 
+    border-right: none;
+    margin: 0 auto 20px auto;
+    font-size: clamp(2.2rem, 8vw, 7rem); /* صغرنا الحجم الأدنى شوية عشان يتناسب مع الموبايل */
     font-weight: 900;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     background: linear-gradient(180deg, #ffffff 30%, #555555 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    width: 15ch; /* عدد حروف اسمك عشان يظبط بالمللي */
-    animation: typing 2.5s steps(15, end), blink-caret .75s step-end infinite;
+    width: 15ch; 
+    animation: typing 2.5s steps(15, end), ;
+    max-width: 100%; /* ضمان عدم تخطي حدود الشاشة */
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 15ch } 
+/* تنسيق خاص للشاشات الصغيرة (الموبايل) عشان الاسم مايتقصش خالص */
+@media (max-width: 600px) {
+    .typing-text {
+        font-size: 7.5vw; /* بيصغر أوتوماتيك حسب عرض شاشة الموبايل بدقة */
+        width: 100%; /* ياخد عرض السطر من غير ما ينط بره */
+        white-space: normal; /* بيخليه ينزل سطر لو مساحة الموبايل صغيرة جداً */
+        border-right: none; /* بنلغي مؤشر الكتابة على الموبايل عشان ميبوظش الشكل لو نزل سطرين */
+        animation: none; /* بنلغي أنيميشن الكتابة على الموبايل عشان يظهر ثابت وواضح فوراً */
+    }
+    
+    .typing-container {
+        padding: 0 15px; /* مسافة أمان يمين وشمال الاسم */
+    }
 }
-
-@keyframes blink-caret {
-    from, to { border-right-color: transparent }
-    50% { border-right-color: var(--accent); }
-}
-
 .hero-bio {
     position: relative;
     z-index: 1;
