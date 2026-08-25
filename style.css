@@ -67,32 +67,6 @@ body {
 .curve-1 { top: 20%; animation: floatCurve 15s ease-in-out infinite alternate; }
 .curve-2 { bottom: 10%; animation: floatCurve 20s ease-in-out infinite alternate-reverse; }
 
-.bg-rocket {
-    position: absolute;
-    width: 60px;  /* صغرناه للنصف عشان يكون لطيف ومباشر */
-    height: 60px;
-    top: 10%;
-    right: 8%;
-    opacity: 0.12;
-    transform: rotate(15deg);
-    animation: floatRocket 8s ease-in-out infinite;
-}
-
-/* للموبايل نخليه أصغر وأهدى بكتير عشان ميبوظش الديزاين */
-@media (max-width: 600px) {
-    .bg-rocket {
-        width: 40px;
-        height: 40px;
-        top: 15px; /* نزلناه فوق شوية جنب الهيدر عشان ميزغلش العين */
-        right: 20px;
-    }
-}
-
-/* حماية المحتوى عشان يفضل فوق النقط والخلفية */
-.main-content {
-    position: relative;
-    z-index: 10;
-}
 
 /* --- Splash Screen --- */
 #splash-screen {
