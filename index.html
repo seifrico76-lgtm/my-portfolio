@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saif Eldin Omar | Portfolio</title>
-    <!-- جلب الخطوط من جوجل -->
+    <title>Seif Eldin Omar | UI/UX & Graphic Design Portfolio</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 1. الشاشة الافتتاحية (Splash Screen) Area -->
+    <!-- 1. الشاشة الافتتاحية (Splash Screen) -->
     <div id="splash-screen">
         <div class="splash-logo-container">
-            <!-- الـ SVG المعدل بكلاسات الـ Trim Path -->
             <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="splash-svg">
                 <defs>
                     <linearGradient id="linear-gradient" x1="232.8" y1="93.2" x2="498.7" y2="359.1" gradientUnits="userSpaceOnUse">
@@ -31,264 +32,227 @@
         </div>
     </div>
 
-    <!-- عناصر الأنميشن الحديثة للـ Cursor والـ Ripple Switch -->
-    <div class="custom-cursor-dot"></div>
-    <div class="custom-cursor-ring"></div>
-
-    <!-- الـ Header والـ Navigation -->
-    <header>
-        <nav class="container">
-            <div class="nav-left">
-                <button class="nav-btn" onclick="showAllCategories()">ALL CATEGORIES</button>
-            </div>
-            <div class="logo-container">
-                <!-- اللوجو المستقر في الهيدر، واخد نفس أبعاد الـ SVG الدقيقة لتجنب الرمشة -->
-                <div class="center-logo fade-in-logo">
-                    <svg viewBox="0 0 640 640" style="width: 100%; height: 100%;">
-                        <path fill="#ffffff" d="M450.8,361.9l-3.5,5-19,27.2h-.4c0-.1-19.3-15.5-19.3-15.5l-12.9-10.2-8.1-6.4-12.8-10.2-9.2-7.3-9.7-7.7-14-11.1-67.2-53.5-16.2-12.9-15.8-12.5c-6.9-5.5-10.9-13.9-10.9-22.7v-86.6c0-16,13-29,29-29h118.8c16,0,29,13,29,29v102.3l-4.8-3.8-8.1-6.4-12.7-10.1-17.5-13.9v-59.3h-90.9v73.2h85.5l5.4,4.3,15.3,12.2,14.8,11.8,12.9,10.2v1.3h-86.9l34.2,27.2,9.7,7.7,30.1,24,9.3,7.4,3.5,2.8,19.3,15.4,10.1,8,9.3,7.4,3.5,2.8Z"/>
-                        <path fill="#ffffff" d="M408.6,396.8v22.9c0,16-13,29-29,29h-118.8c-16,0-29-13-29-29v-163.7l3.8,3.1,39,31.1v120.8h90.9v-48.4l30.1,24,9.5,7.5,3.4,2.7Z"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="nav-right">
-                <a href="#contact" class="nav-btn">GET IN TOUCH</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- الـ Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <span class="badge">Visual Designer & Ad Specialist</span>
-            <h1 class="hero-title">SEIF ELDEEN</h1>
-            <p class="hero-bio">Graphic Design student at Helwan University. Specializing in visual storytelling, 
-                from high-impact social media campaigns to intuitive UI/UX experiences.</p>
-
-            <!-- فلاتر المجلدات الكبيرة -->
-            <div class="folder-filters" id="main-filters">
-                <button class="filter-btn active" id="btn-all" onclick="showAllCategories()">All Categories</button>
-                <button class="filter-btn" id="btn-social" onclick="openCategory('social-main')">Social Media</button>
-                <button class="filter-btn" id="btn-ui" onclick="openCategory('ui-main')">UI Designs</button>
-                <button class="filter-btn" id="btn-logo" onclick="openCategory('logo-main')">Logo Designs</button>
-                <button class="filter-btn" id="btn-printed" onclick="openCategory('printed-main')">Printed Designs</button>
-            </div>
-
-            <!-- الفلاتر الفرعية للـ UI -->
-            <div class="sub-filters" id="ui-subs" style="display: none;">
-                <button class="sub-btn" onclick="filterSelection('sine-app')">Sine App</button>
-                <button class="sub-btn" onclick="filterSelection('material-crafts')">Material Crafts App</button>
-                <button class="sub-btn" onclick="filterSelection('circa')">Circa Case Study</button>
-            </div>
-
-            <!-- الفلاتر الفرعية للـ Social Media -->
-            <div class="sub-filters" id="social-subs" style="display: none;">
-                <button class="sub-btn" onclick="filterSelection('football')">Alahly Empire</button>
-                <button class="sub-btn" onclick="filterSelection('touha')">Touha Tourism</button>
-                <button class="sub-btn" onclick="filterSelection('uni')">Uni Projects</button>
-                <button class="sub-btn" onclick="filterSelection('filmposters')">Film Posters Redesign</button>
-            </div>
-
-            <!-- الفلاتر الفرعية الخاصة بألبومات الأفلام -->
-            <div class="sub-filters" id="film-subs" style="display: none; margin-top: 10px; justify-content: center; gap: 10px;">
-                <button class="sub-btn" onclick="filterSelection('bimbo')">Bimbo</button>
-                <button class="sub-btn" onclick="filterSelection('it-movie')">IT</button>
-                <button class="sub-btn" onclick="filterSelection('lotr')">The Lord of the Rings</button>
-                <button class="sub-btn" onclick="filterSelection('flight-risk')">Flight Risk</button>
-            </div>
-            
-            <div class="sub-filters" id="logo-subs" style="display: none;"></div>
-
-            <!-- الفلاتر الفرعية للمطبوعات -->
-            <div class="sub-filters" id="printed-subs" style="display: none;">
-                <button class="sub-btn" onclick="filterSelection('yum')">Yum Yum Menu</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- معرض الأعمال (Portfolio Grid) -->
-    <section id="work" class="container">
-        <div class="grid" id="portfolio-grid">
-            
-            <!-- أغلفة الأقسام الرئيسية (Category Covers) -->
-            <div class="card category-cover" onclick="openCategory('social-main')">
-                <img src="Alahly V gormahia.png"> <div class="cover-overlay"><h3>Social Media Designs</h3></div>
-            </div>
-            <div class="card category-cover" onclick="openCategory('ui-main')">
-                <img src="circa cover.png"> <div class="cover-overlay"><h3>UI Designs</h3></div>
-            </div>
-            <div class="card category-cover" onclick="openCategory('logo-main')">
-                <img src="Oraimo.png"> <div class="cover-overlay"><h3>Logo Designs</h3></div>
-            </div>
-            <div class="card category-cover" onclick="openCategory('printed-main')">
-                <img src="yum yum menu New 2 copy.jpg"> <div class="cover-overlay"><h3>Printed Designs</h3></div>
-            </div>
-
-            <!-- ألبوم الشعارات (Logo Items) -->
-            <div class="card item-card logo" onclick="window.open('Oraimo logo Redesigns .pdf', '_blank')"><img src="Oraimo.png"><h3>[PDF] Oraimo Logo Redesign</h3></div>
-
-            <!-- ألبوم الـ UI / UX -->
-            <div class="card item-card ui circa" onclick="window.open('UI Presentation ( Circa ).pdf', '_blank')"><img src="circa cover.png"><h3>[PDF] Circa Case Study</h3></div>
-            <div class="card item-card ui material-crafts" onclick="window.open('Material Crafts casestudy.pdf', '_blank')"><img src="Material Crafts casestudy.png"><h3>[PDF] Material Crafts casestudy</h3></div>
-
-            <div class="card item-card ui sine-app"><img src="sine Home.png"><h3>Home</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine product List.png"><h3>Product List</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine product detailes.png"><h3>Product Details</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine filters.png"><h3>Filters</h3></div> 
-            <div class="card item-card ui sine-app"><img src="sine Cart.png"><h3>Cart</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Checkout.png"><h3>Checkout</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Orders.png"><h3>Orders</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Addresses.png"><h3>Addresses</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Payment.png"><h3>Payment</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Profile.png"><h3>Profile</h3></div>
-            <div class="card item-card ui sine-app"><img src="sine Settings .png"><h3>Settings</h3></div>
-
-            <!-- ألبوم السوشيال ميديا (كورة وسياحة وجامعة) -->
-            <div class="card item-card football social"><img src="Alahly V gormahia.png"><h3>Ahly vs Gormahia</h3></div>
-            <div class="card item-card football social"><img src="Alahly Vs elesmaily.jpg"><h3>Ahly vs Ismaily</h3></div>
-            <div class="card item-card football social"><img src="Alahly Vs Elzamalek.png"><h3>Ahly vs Zamalek</h3></div>
-            <div class="card item-card football social"><img src="Alahly vs Patchuca.png"><h3>Ahly vs Patchuca</h3></div>
-            <div class="card item-card football social"><img src="Real Madrid vs Sevilla copy.png"><h3>Real Madrid vs Sevilla</h3></div>
-            <div class="card item-card touha social"><img src="اسوان 1.png"><h3>Aswan</h3></div>
-            <div class="card item-card touha social"><img src="الاقصر 2.png"><h3>Luxor</h3></div>
-            <div class="card item-card touha social"><img src="Touha.png"><h3>Touha</h3></div>
-            <div class="card item-card uni social"><img src="Isis Green tea copy.jpg"><h3>Isis</h3></div>
-            <div class="card item-card uni social"><img src="Redbull copy.jpg"><h3>Redbull</h3></div>
-            <div class="card item-card uni social"><img src="Six hats white (Bab elsham) copy.jpg"><h3>Bab Elsham</h3></div>
-            <div class="card item-card uni social"><img src="collage 1 copy.jpg"><h3>Collage</h3></div>
-            <div class="card item-card uni social"><img src="Frida copy.jpg"><h3>Frida</h3></div>
-            <div class="card item-card uni social"><img src="Twist final 1.jpg"><h3>Twist</h3></div>
-
-            <!-- ألبومات تصميمات بوسترات الأفلام والمعارض ثلاثية الأبعاد -->
-            <div class="card item-card filmposters bimbo social"><img src="bembo redesign copy.jpg"><h3>Bimbo Redesign</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT Redesign 2.jpg"><h3>IT Redesign</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 2 copy.jpg"><h3>The Lord of the Rings</h3></div>
-            <div class="card item-card filmposters FR social"><img src="Flight risk redesign copy.jpg"><h3>Flight Risk</h3></div>
-            
-            <!-- ألبوم Flight Risk الكامل -->
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 6 copy.jpg"><h3>Flight Risk - Mockup 1</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 7 copy.jpg"><h3>Flight Risk - Mockup 2</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 16 .jpg"><h3>Flight Risk - Mockup 3</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 15 .jpg"><h3>Flight Risk - Mockup 4</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 5 copy.jpg"><h3>Flight Risk - Wall Mockup </h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 1 copy.jpg"><h3>Flight Risk - 3D Exhibtion</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 13.jpg"><h3>Flight Risk - Bag Givaway</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 14.jpg"><h3>Flight Risk - T-shirt Givaway</h3></div>
-            <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 11 copy.jpg"><h3>Flight Risk - Cup Givaway</h3></div>
-            
-            <!-- ألبوم Bimbo الكامل -->
-            <div class="card item-card filmposters bimbo social"><img src="mockup 2 copy.jpg"><h3>Bimbo - Mockup 1</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 3.jpg"><h3>Bimbo - Mockup 2</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 5.jpg"><h3>Bimbo - Mockup 3</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 6.jpg"><h3>Bimbo - Mockup 4</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 7.jpg"><h3>Bimbo - Mockup 5</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 11.jpg"><h3>Bimbo - 3D Exhibtion 1</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 4.jpg"><h3>Bimbo - 3D Exhibtion 2</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 8.jpg"><h3>Bimbo - Bag Givaway</h3></div>
-            <div class="card item-card filmposters bimbo social"><img src="mockup 9.jpg"><h3>Bimbo - T-shirt Givaway</h3></div>
-
-            <!-- ألبوم IT Movie الكامل -->
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 1.jpg"><h3>IT - Mockup 1</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 3.jpg"><h3>IT - Mockup 2</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 4.jpg"><h3>IT - Mockup 3</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 6.jpg"><h3>IT - Mockup 3</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 5.jpg"><h3>IT - Wall Mockup</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 2.jpg"><h3>IT - 3D Exhibition</h3></div>
-            <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 7.jpg"><h3>IT - cinema Ticket</h3></div>
-
-            <!-- ألبوم The Lord of the Rings الكامل -->
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 1 copy.jpg"><h3>LOTR - Mockup 1</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 2 copy.jpg"><h3>LOTR - Mockup 2</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 3 copy.jpg"><h3>LOTR - Mockup 3</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 4 copy.jpg"><h3>LOTR - Mockup 4</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 10 copy.png"><h3>LOTR - Wall mockup</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 7 copy.jpg"><h3>LOTR - 3D Exhibition 1</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 5 copy.jpg"><h3>LOTR - 3D Exhibition 2</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 8 copy.jpg"><h3>LOTR - Bag Giveaway</h3></div>
-            <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 9 copy.jpg"><h3>LOTR - T-shirt Giveaway</h3></div>
-
-            <!-- ألبوم المطبوعات (Printed Items) -->
-            <div class="card item-card printed yum"><img src="yum yum menu New 2 copy.jpg"><h3>Yum Yum Menu</h3></div>
-            <div class="card item-card printed yum"><img src="Vedio frame 1.jpg"><h3>Video Frame</h3></div>
-            
-        </div>
-    </section>
-
-    <!-- نافذة العرض المكبرة (Lightbox Modal) -->
-    <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
-        <div id="caption"></div>
+    <!-- 2. خلفية النقط التفاعلية والرسومات -->
+    <canvas id="dots-canvas"></canvas>
+    <div class="bg-illustrations">
+        <svg class="bg-curve curve-1" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" stroke="rgba(0, 255, 136, 0.1)" stroke-width="2" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,128C1120,107,1280,117,1360,122.7L1440,128"></path>
+        </svg>
+        <svg class="bg-curve curve-2" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" stroke="rgba(0, 255, 136, 0.05)" stroke-width="4" d="M0,64L80,96C160,128,320,192,480,202.7C640,213,800,171,960,149.3C1120,128,1280,128,1360,128L1440,128"></path>
+        </svg>
+        <svg class="bg-rocket" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+        </svg>
     </div>
 
-    <!-- الـ Footer ومنطقة التواصل -->
-    <footer id="contact">
-        <div class="container">
-            <h2 class="footer-title">Ready to collaborate?</h2>
-            <!-- التعديل هنا: رابط ويب مباشر يفتح الجيميل في المتصفح فوراً لإنشاء رسالة جديدة -->
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seifrico76@gmail.com" target="_blank" class="email-link">seifrico76@gmail.com</a>
-            <div class="contact-grid">
-                <a href="https://wa.me/201002324228" target="_blank" class="contact-item btn-styled">WhatsApp</a>
-                <a href="https://www.instagram.com/seifomar__" target="_blank" class="contact-item btn-styled">Instagram</a>
-                <a href="tel:01002324228" class="contact-item btn-styled">Call</a>
+    <!-- 3. المحتوى الأساسي -->
+    <div class="main-content">
+        <!-- الـ Header -->
+        <header>
+            <nav class="container">
+                <div class="nav-left">
+                    <button class="nav-btn" onclick="showAllCategories()">ALL CATEGORIES</button>
+                </div>
+                <div class="logo-container">
+                    <div class="center-logo fade-in-logo">
+                        <svg viewBox="0 0 640 640" style="width: 100%; height: 100%;">
+                            <path fill="#ffffff" d="M450.8,361.9l-3.5,5-19,27.2h-.4c0-.1-19.3-15.5-19.3-15.5l-12.9-10.2-8.1-6.4-12.8-10.2-9.2-7.3-9.7-7.7-14-11.1-67.2-53.5-16.2-12.9-15.8-12.5c-6.9-5.5-10.9-13.9-10.9-22.7v-86.6c0-16,13-29,29-29h118.8c16,0,29,13,29,29v102.3l-4.8-3.8-8.1-6.4-12.7-10.1-17.5-13.9v-59.3h-90.9v73.2h85.5l5.4,4.3,15.3,12.2,14.8,11.8,12.9,10.2v1.3h-86.9l34.2,27.2,9.7,7.7,30.1,24,9.3,7.4,3.5,2.8,19.3,15.4,10.1,8,9.3,7.4,3.5,2.8Z"/>
+                            <path fill="#ffffff" d="M408.6,396.8v22.9c0,16-13,29-29,29h-118.8c-16,0-29-13-29-29v-163.7l3.8,3.1,39,31.1v120.8h90.9v-48.4l30.1,24,9.5,7.5,3.4,2.7Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <a href="#contact" class="nav-btn">GET IN TOUCH</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- الـ Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <span class="badge" data-aos="fade-down" data-aos-duration="1000">Graphic Designer & UI/UX Specialist</span>
+                
+                <div class="typing-container">
+                    <h1 class="hero-title typing-text">SEIF ELDIN OMAR</h1>
+                </div>
+
+                <p class="hero-bio" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">
+                    Crafting intuitive digital experiences and high-impact visual storytelling. 
+                    Dedicated to UI/UX and professional graphic design solutions.
+                </p>
+
+                <div class="folder-filters" id="main-filters" data-aos="zoom-in" data-aos-delay="800">
+                    <button class="filter-btn active" id="btn-all" onclick="showAllCategories()">All Categories</button>
+                    <button class="filter-btn" id="btn-social" onclick="openCategory('social-main')">Social Media</button>
+                    <button class="filter-btn" id="btn-ui" onclick="openCategory('ui-main')">UI Designs</button>
+                    <button class="filter-btn" id="btn-logo" onclick="openCategory('logo-main')">Logo Designs</button>
+                    <button class="filter-btn" id="btn-printed" onclick="openCategory('printed-main')">Printed Designs</button>
+                </div>
+
+                <div class="sub-filters" id="ui-subs" style="display: none;">
+                    <button class="sub-btn" onclick="filterSelection('sine-app')">Sine App</button>
+                    <button class="sub-btn" onclick="filterSelection('material-crafts')">Material Crafts App</button>
+                    <button class="sub-btn" onclick="filterSelection('circa')">Circa Case Study</button>
+                </div>
+                <div class="sub-filters" id="social-subs" style="display: none;">
+                    <button class="sub-btn" onclick="filterSelection('football')">Alahly Empire</button>
+                    <button class="sub-btn" onclick="filterSelection('touha')">Touha Tourism</button>
+                    <button class="sub-btn" onclick="filterSelection('uni')">Uni Projects</button>
+                    <button class="sub-btn" onclick="filterSelection('filmposters')">Film Posters</button>
+                </div>
+                <div class="sub-filters" id="film-subs" style="display: none; margin-top: 10px; justify-content: center; gap: 10px;">
+                    <button class="sub-btn" onclick="filterSelection('bimbo')">Bimbo</button>
+                    <button class="sub-btn" onclick="filterSelection('it-movie')">IT</button>
+                    <button class="sub-btn" onclick="filterSelection('lotr')">The Lord of the Rings</button>
+                    <button class="sub-btn" onclick="filterSelection('flight-risk')">Flight Risk</button>
+                </div>
+                <div class="sub-filters" id="logo-subs" style="display: none;"></div>
+                <div class="sub-filters" id="printed-subs" style="display: none;">
+                    <button class="sub-btn" onclick="filterSelection('yum')">Yum Yum Menu</button>
+                </div>
             </div>
-            <p class="copyright">© 2026 Seif Eldeen Omar</p>
+        </section>
+
+        <!-- Portfolio Grid -->
+        <section id="work" class="container">
+            <div class="grid" id="portfolio-grid">
+                
+                <!-- Category Covers -->
+                <div class="card category-cover" onclick="openCategory('social-main')">
+                    <img src="Alahly V gormahia.png"> <div class="cover-overlay"><h3>Social Media Designs</h3></div>
+                </div>
+                <div class="card category-cover" onclick="openCategory('ui-main')">
+                    <img src="circa cover.png"> <div class="cover-overlay"><h3>UI/UX Designs</h3></div>
+                </div>
+                <div class="card category-cover" onclick="openCategory('logo-main')">
+                    <img src="Oraimo.png"> <div class="cover-overlay"><h3>Logo Designs</h3></div>
+                </div>
+                <div class="card category-cover" onclick="openCategory('printed-main')">
+                    <img src="yum yum menu New 2 copy.jpg"> <div class="cover-overlay"><h3>Printed Designs</h3></div>
+                </div>
+
+                <!-- Logo Items -->
+                <div class="card item-card logo" onclick="window.open('Oraimo logo Redesigns .pdf', '_blank')"><img src="Oraimo.png"><h3>[PDF] Oraimo Logo Redesign</h3></div>
+
+                <!-- UI / UX -->
+                <div class="card item-card ui circa" onclick="window.open('UI Presentation ( Circa ).pdf', '_blank')"><img src="circa cover.png"><h3>[PDF] Circa Case Study</h3></div>
+                <div class="card item-card ui material-crafts" onclick="window.open('Material Crafts casestudy.pdf', '_blank')"><img src="Material Crafts casestudy.png"><h3>[PDF] Material Crafts casestudy</h3></div>
+
+                <div class="card item-card ui sine-app"><img src="sine Home.png"><h3>Home</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine product List.png"><h3>Product List</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine product detailes.png"><h3>Product Details</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine filters.png"><h3>Filters</h3></div> 
+                <div class="card item-card ui sine-app"><img src="sine Cart.png"><h3>Cart</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Checkout.png"><h3>Checkout</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Orders.png"><h3>Orders</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Addresses.png"><h3>Addresses</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Payment.png"><h3>Payment</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Profile.png"><h3>Profile</h3></div>
+                <div class="card item-card ui sine-app"><img src="sine Settings .png"><h3>Settings</h3></div>
+
+                <!-- Social Media -->
+                <div class="card item-card football social"><img src="Alahly V gormahia.png"><h3>Ahly vs Gormahia</h3></div>
+                <div class="card item-card football social"><img src="Alahly Vs elesmaily.jpg"><h3>Ahly vs Ismaily</h3></div>
+                <div class="card item-card football social"><img src="Alahly Vs Elzamalek.png"><h3>Ahly vs Zamalek</h3></div>
+                <div class="card item-card football social"><img src="Alahly vs Patchuca.png"><h3>Ahly vs Patchuca</h3></div>
+                <div class="card item-card football social"><img src="Real Madrid vs Sevilla copy.png"><h3>Real Madrid vs Sevilla</h3></div>
+                <div class="card item-card touha social"><img src="اسوان 1.png"><h3>Aswan</h3></div>
+                <div class="card item-card touha social"><img src="الاقصر 2.png"><h3>Luxor</h3></div>
+                <div class="card item-card touha social"><img src="Touha.png"><h3>Touha</h3></div>
+                <div class="card item-card uni social"><img src="Isis Green tea copy.jpg"><h3>Isis</h3></div>
+                <div class="card item-card uni social"><img src="Redbull copy.jpg"><h3>Redbull</h3></div>
+                <div class="card item-card uni social"><img src="Six hats white (Bab elsham) copy.jpg"><h3>Bab Elsham</h3></div>
+                <div class="card item-card uni social"><img src="collage 1 copy.jpg"><h3>Collage</h3></div>
+                <div class="card item-card uni social"><img src="Frida copy.jpg"><h3>Frida</h3></div>
+                <div class="card item-card uni social"><img src="Twist final 1.jpg"><h3>Twist</h3></div>
+
+                <!-- Film Posters -->
+                <div class="card item-card filmposters bimbo social"><img src="bembo redesign copy.jpg"><h3>Bimbo Redesign</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT Redesign 2.jpg"><h3>IT Redesign</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 2 copy.jpg"><h3>The Lord of the Rings</h3></div>
+                <div class="card item-card filmposters FR social"><img src="Flight risk redesign copy.jpg"><h3>Flight Risk</h3></div>
+                
+                <!-- Flight Risk -->
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 6 copy.jpg"><h3>Flight Risk - Mockup 1</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 7 copy.jpg"><h3>Flight Risk - Mockup 2</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 16 .jpg"><h3>Flight Risk - Mockup 3</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 15 .jpg"><h3>Flight Risk - Mockup 4</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 5 copy.jpg"><h3>Flight Risk - Wall Mockup </h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 1 copy.jpg"><h3>Flight Risk - 3D Exhibtion</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 13.jpg"><h3>Flight Risk - Bag Givaway</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 14.jpg"><h3>Flight Risk - T-shirt Givaway</h3></div>
+                <div class="card item-card filmposters flight-risk social"><img src="Flight risk redesign mockup 11 copy.jpg"><h3>Flight Risk - Cup Givaway</h3></div>
+                
+                <!-- Bimbo -->
+                <div class="card item-card filmposters bimbo social"><img src="mockup 2 copy.jpg"><h3>Bimbo - Mockup 1</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 3.jpg"><h3>Bimbo - Mockup 2</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 5.jpg"><h3>Bimbo - Mockup 3</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 6.jpg"><h3>Bimbo - Mockup 4</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 7.jpg"><h3>Bimbo - Mockup 5</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 11.jpg"><h3>Bimbo - 3D Exhibtion 1</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 4.jpg"><h3>Bimbo - 3D Exhibtion 2</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 8.jpg"><h3>Bimbo - Bag Givaway</h3></div>
+                <div class="card item-card filmposters bimbo social"><img src="mockup 9.jpg"><h3>Bimbo - T-shirt Givaway</h3></div>
+
+                <!-- IT Movie -->
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 1.jpg"><h3>IT - Mockup 1</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 3.jpg"><h3>IT - Mockup 2</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 4.jpg"><h3>IT - Mockup 3</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 6.jpg"><h3>IT - Mockup 3</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 5.jpg"><h3>IT - Wall Mockup</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 2.jpg"><h3>IT - 3D Exhibition</h3></div>
+                <div class="card item-card filmposters it-movie social"><img src="IT REDESIGN MOCKUP 7.jpg"><h3>IT - cinema Ticket</h3></div>
+
+                <!-- The Lord of the Rings -->
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 1 copy.jpg"><h3>LOTR - Mockup 1</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 2 copy.jpg"><h3>LOTR - Mockup 2</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 3 copy.jpg"><h3>LOTR - Mockup 3</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 4 copy.jpg"><h3>LOTR - Mockup 4</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 10 copy.png"><h3>LOTR - Wall mockup</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 7 copy.jpg"><h3>LOTR - 3D Exhibition 1</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 5 copy.jpg"><h3>LOTR - 3D Exhibition 2</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 8 copy.jpg"><h3>LOTR - Bag Giveaway</h3></div>
+                <div class="card item-card filmposters lotr social"><img src="Lord of the rings redesign 9 copy.jpg"><h3>LOTR - T-shirt Giveaway</h3></div>
+
+                <!-- Printed Items -->
+                <div class="card item-card printed yum"><img src="yum yum menu New 2 copy.jpg"><h3>Yum Yum Menu</h3></div>
+                <div class="card item-card printed yum"><img src="Vedio frame 1.jpg"><h3>Video Frame</h3></div>
+                
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
         </div>
-    </footer>
 
-    <!-- سكريبت التحكم المنطقي في الأنميشنز والتنقل بين الألبومات -->
+        <!-- Footer -->
+        <footer id="contact" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container">
+                <h2 class="footer-title">Ready to collaborate?</h2>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seifrico76@gmail.com" target="_blank" class="email-link">seifrico76@gmail.com</a>
+                <div class="contact-grid">
+                    <a href="https://wa.me/201002324228" target="_blank" class="contact-item btn-styled">WhatsApp</a>
+                    <a href="https://www.instagram.com/seifomar__" target="_blank" class="contact-item btn-styled">Instagram</a>
+                    <a href="tel:01002324228" class="contact-item btn-styled">Call</a>
+                </div>
+                <p class="copyright">© 2026 Seif Eldin Omar</p>
+            </div>
+        </footer>
+    </div> <!-- قفلة الـ Main Content -->
+
+    <!-- السكريبتات والتفاعلات -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- السكريبتات والتفاعلات -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            initCustomCursor();
-
-            setTimeout(() => {
-                const splashScreen = document.getElementById('splash-screen');
-                const mainLogo = document.querySelector('.fade-in-logo');
-                
-                if (splashScreen) {
-                    splashScreen.classList.add('shrink');
-                    
-                    setTimeout(() => {
-                        if (mainLogo) mainLogo.classList.add('show');
-                    }, 500);
-                    
-                    setTimeout(() => {
-                        splashScreen.style.display = 'none';
-                    }, 1100);
-                }
-            }, 2500);
-        });
-
-        // --- منطق الـ Custom Inertia Cursor ---
-        function initCustomCursor() {
-            // تعطيل الكيرسور المخصص تماماً على الموبايل والتاب وأي جهاز لمس
-            const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(max-width: 900px)').matches;
-            if (isTouchDevice) return;
-
-            const dot = document.querySelector('.custom-cursor-dot');
-            const ring = document.querySelector('.custom-cursor-ring');
-            
-            if(!dot || !ring) return;
-
-            window.addEventListener('mousemove', (e) => {
-                dot.style.left = e.clientX + 'px';
-                dot.style.top = e.clientY + 'px';
-                
-                ring.style.left = e.clientX + 'px';
-                ring.style.top = e.clientY + 'px';
-            });
-
-            const updateInteractiveTargets = () => {
-                const interactiveElements = document.querySelectorAll('button, a, .card, .category-cover, .center-logo');
-                interactiveElements.forEach(el => {
-                    el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
-                    el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
-                });
-            };
-            updateInteractiveTargets();
-            window.addEventListener('filterChanged', updateInteractiveTargets);
-        }
-
-        // --- منطق الـ Staggered Index Assigning ---
+        // 1. منطق الفلاتر متاح على مستوى الشاشة
         function applyStaggerEffect() {
             const visibleCards = document.querySelectorAll('.item-card[style*="display: block"], .category-cover[style*="display: block"]');
             visibleCards.forEach((card, index) => {
@@ -297,7 +261,6 @@
             window.dispatchEvent(new Event('filterChanged'));
         }
 
-        // --- التحكم في التنقلات والفلاتر (Main Controller) ---
         function openCategory(type) {
             document.querySelectorAll('.sub-filters').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.item-card').forEach(el => el.style.display = 'none');
@@ -348,27 +311,116 @@
                 x[i].style.display = "none";
                 if (x[i].classList.contains(c)) x[i].style.display = "block";
             }
-            
             applyStaggerEffect();
         }
 
-        window.onload = showAllCategories;
+        // 2. تشغيل الأكواد بعد ما الصفحة تحمل بالكامل
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({ once: true, offset: 50 });
+            showAllCategories();
 
-        // منطق الـ Modal لعرض الصور الكبيرة بنقاء كامل
-        var modal = document.getElementById("myModal");
-        var modalImg = document.getElementById("img01");
-        
-        document.getElementById('portfolio-grid').addEventListener('click', function(e) {
-            const card = e.target.closest('.item-card');
-            if (e.target.tagName === 'IMG' && card && !card.classList.contains('circa') && !card.classList.contains('logo') && !card.classList.contains('material-crafts')) {
-                modal.style.display = "block";
-                modalImg.src = e.target.src;
-                document.getElementById("caption").innerHTML = card.querySelector('h3').innerHTML;
+            // Splash Screen Logic
+            setTimeout(() => {
+                const splashScreen = document.getElementById('splash-screen');
+                const mainLogo = document.querySelector('.fade-in-logo');
+                
+                if (splashScreen) {
+                    splashScreen.classList.add('shrink');
+                    setTimeout(() => { if (mainLogo) mainLogo.classList.add('show'); }, 500);
+                    setTimeout(() => { splashScreen.style.display = 'none'; }, 1100);
+                }
+            }, 2500);
+
+            // Interactive Background Random Dots Canvas Logic
+            const canvas = document.getElementById('dots-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height, dots = [];
+                let mouse = { x: -1000, y: -1000 };
+
+                window.addEventListener('mousemove', (e) => {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+
+                window.addEventListener('mouseout', () => {
+                    mouse.x = -1000;
+                    mouse.y = -1000;
+                });
+
+                function initCanvas() {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                    dots = [];
+                    
+                    // عدد النقط في الشاشة (ممكن نتحكم فيه لو حابب نزود أو نتقل)
+                    const numberOfDots = Math.floor((width * height) / 1200); 
+                    
+                    for (let i = 0; i < numberOfDots; i++) {
+                        let rx = Math.random() * width;
+                        let ry = Math.random() * height;
+                        dots.push({
+                            x: rx, 
+                            y: ry,
+                            baseX: rx, 
+                            baseY: ry,
+                            size: Math.random() * 0.8 + 0.8, // حجم أصغر ورفيع (بين 0.8 و 1.6 بكسل)
+                            alpha: Math.random() * 0.25 + 0.1 // شفافية خفيفة ومتفاوتة (Opacity خفيف)
+                        });
+                    }
+                }
+
+                function animateDots() {
+                    ctx.clearRect(0, 0, width, height);
+                    
+                    dots.forEach(dot => {
+                        let dx = mouse.x - dot.x;
+                        let dy = mouse.y - dot.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        let maxDist = 90; // مسافة تأثير الماوس
+                        
+                        if (distance < maxDist) {
+                            let force = (maxDist - distance) / maxDist;
+                            let moveX = (dx / distance) * force * 15; // هتبعد بحد أقصى 15 بكسل زي ما طلبت
+                            let moveY = (dy / distance) * force * 15;
+                            
+                            dot.x -= moveX;
+                            dot.y -= moveY;
+                        } else {
+                            // الرجوع للمكان الأصلي بنعومة
+                            dot.x -= (dot.x - dot.baseX) * 0.08;
+                            dot.y -= (dot.y - dot.baseY) * 0.08;
+                        }
+                        
+                        ctx.beginPath();
+                        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(0, 255, 136, ${dot.alpha})`; // اللون الأخضر بشفافية مختلفة لكل نقطة
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(animateDots);
+                }
+
+                window.addEventListener('resize', initCanvas);
+                initCanvas();
+                animateDots();
             }
-        });
 
-        document.querySelector(".close").onclick = function() { modal.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
+            // Lightbox Modal Logic
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            
+            document.getElementById('portfolio-grid').addEventListener('click', function(e) {
+                const card = e.target.closest('.item-card');
+                if (e.target.tagName === 'IMG' && card && !card.classList.contains('circa') && !card.classList.contains('logo') && !card.classList.contains('material-crafts')) {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
+                    document.getElementById("caption").innerHTML = card.querySelector('h3').innerHTML;
+                }
+            });
+
+            document.querySelector(".close").onclick = function() { modal.style.display = "none"; }
+            window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
+        });
     </script>
 </body>
 </html>
