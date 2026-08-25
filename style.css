@@ -69,23 +69,23 @@ body {
 
 .bg-rocket {
     position: absolute;
-    width: 120px;
-    height: 120px;
-    top: 15%;
-    right: 10%;
-    opacity: 0.15;
+    width: 60px;  /* صغرناه للنصف عشان يكون لطيف ومباشر */
+    height: 60px;
+    top: 10%;
+    right: 8%;
+    opacity: 0.12;
     transform: rotate(15deg);
     animation: floatRocket 8s ease-in-out infinite;
 }
 
-@keyframes floatCurve {
-    0% { transform: translateY(0) scaleY(1); }
-    100% { transform: translateY(30px) scaleY(1.1); }
-}
-
-@keyframes floatRocket {
-    0%, 100% { transform: translateY(0) rotate(15deg); }
-    50% { transform: translateY(-20px) rotate(20deg); }
+/* للموبايل نخليه أصغر وأهدى بكتير عشان ميبوظش الديزاين */
+@media (max-width: 600px) {
+    .bg-rocket {
+        width: 40px;
+        height: 40px;
+        top: 15px; /* نزلناه فوق شوية جنب الهيدر عشان ميزغلش العين */
+        right: 20px;
+    }
 }
 
 /* حماية المحتوى عشان يفضل فوق النقط والخلفية */
